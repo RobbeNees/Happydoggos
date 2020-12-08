@@ -67,7 +67,7 @@ fetchDogs = () => {
 fillDogsArray = (dogs) => {
     console.log("hey hey hey  ");
    
-    for (var i = 0; i < nmbrOfDogs; i++) {
+    for (var i = 0; i < dogs.length; i++) {
         // console.log(i);
         // dogs.push(dogs[i]);
 
