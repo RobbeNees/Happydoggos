@@ -53,6 +53,8 @@ fetchDogs = () => {
     var url = 'https://dog.ceo/api/breeds/image/random/' + nmbrOfDogs; 
     //console.log(url);
     
+    //AXIOS CHECKEN VOOR FETCH, ALSO, ZONDER JQUERIE
+
     $.getJSON(url, function(data) {
             
         var dogs = data.message;
