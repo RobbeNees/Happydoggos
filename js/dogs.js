@@ -1,11 +1,11 @@
-var goBack = () => {
-    console.log("go back");
-    window.history.back();
-}
+// var goBack = () => {
+//     console.log("go back");
+//     window.history.back();
+// }
 
 
-const backBtn = document.getElementById('backBtn');
-backBtn.addEventListener('click', goBack);
+// const backBtn = document.getElementById('backBtn');
+// backBtn.addEventListener('click', goBack);
 
 
 /*
