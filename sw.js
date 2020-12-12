@@ -2,6 +2,7 @@ const filesToCache = [
     'index.html',
     'js/dogs.js',
     'css/dogs.css',
+    '404.html'
     // 'materialize.min.css'
 ];
 
@@ -17,5 +18,34 @@ self.addEventListener('install', event => {
             .catch (err => {
                 console.error(err);
             })
+    )
+})
+
+self.addEventListener('fetch', event => {
+    console.log('Fetch event for  ' , event.request.url);
+    event.respondWith(
+        caches.match(event.request)
+        .then(response => {
+            if (response) {
+                console.log('Found ', event.request.url, ' in cache');
+                return response;
+            }
+            console.log('network request for ', event.request.url);
+            return fetch(event.request)
+            .then(response => {
+                if(response.status === 404){
+                    return caches.match('404.html');
+                }
+                return caches.open(staticCacheName)
+                .then(cache => {
+                    cache.put(event.request.url, response.clone());
+                    return response;
+                })
+            })
+
+        })
+        .catch(err => {
+            console.log(err);
+        })
     )
 })
