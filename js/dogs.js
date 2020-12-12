@@ -106,42 +106,10 @@ findBreed = (dog) => {
 }
 
 
-/*
-nmbrOfDogs = document.getElementById('nmbrOfDogs').value;
-console.log(nmbrOfDogs);
-
-$.getJSON('https://dog.ceo/api/breeds/image/random/3', function(data) {
-        
-    var dogs = data.message;
-            
-    console.log(dogs);
-
-
-    
-    document.getElementById("img1").src = dogs[0];
-    document.getElementById("img2").src = dogs[1];
-    document.getElementById("img3").src = dogs[2];
-    
-});
-*/
-
-
-
-
-
-
-
-
-
 
 
 /*
-var i;
-for (i = 0; i < 9; i++) {
-    var btn = document.createElement("BUTTON");   // Create a <button> element
-    btn.innerHTML = "CLICK ME " + i;                   // Insert text
-    document.body.appendChild(btn);    
-}
+
 
 
 

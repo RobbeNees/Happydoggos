@@ -1,0 +1,13 @@
+{
+    "name": "Happy Doggos Generator",
+    "short_name": "HappyDoggos",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "c9c9c9",
+    "description": "A Simple webapp that generates random dogs",
+    "icons": [{
+      "src": "Favicon-dog.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }]
+}
