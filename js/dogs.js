@@ -1,21 +1,16 @@
-// var goBack = () => {
-//     console.log("go back");
-//     window.history.back();
-// }
+if ( 'serviceWorker' in navigator ) {
+    try {
+        let serviceWorker = navigator.serviceWorker.register('sw.js');
+        console.log("serviceWorker Found");
 
-
-// const backBtn = document.getElementById('backBtn');
-// backBtn.addEventListener('click', goBack);
-
-
-/*
-class Dog {
-    constructor(url, breed) {
-        this.url = url;
-        this.breed = breed;
+    } catch (err) {
+        console.log(err);
     }
 }
-*/
+
+
+
+
 
 var dogs = [];
 var nmbrOfDogs;
@@ -28,60 +23,59 @@ document.getElementById("dogForm").addEventListener("submit", function(event){
 
     event.preventDefault();
 
-    var ExistingCards = document.querySelectorAll("div.card");
-    for (i = 0; i < ExistingCards.length; i++) {
-        //console.log(images[i]);
-        ExistingCards[i].remove();
-        }
+    var existingCards = document.querySelectorAll("div.card");
+    //Delete existing cards
+    existingCards.forEach(card => {
+        card.remove();
+    });
 
     checkHowManyDogs();
 
 });
 
 
-
 checkHowManyDogs = () => {
   console.log("checking how many dogs");
   nmbrOfDogs = document.getElementById('nmbrOfDogs').value;
   //console.log(nmbrOfDogs);
-  fetchDogs()
+  fetchDogs();
 }
 
 
-
 fetchDogs = () => {
-    var url = 'https://dog.ceo/api/breeds/image/random/' + nmbrOfDogs; 
-    //console.log(url);
     
-    //AXIOS CHECKEN VOOR FETCH, ALSO, ZONDER JQUERIE
+    let url = `https://dog.ceo/api/breeds/image/random/${nmbrOfDogs}`; 
+    
+    fetch(url)
+        .then(result => {
+            console.log(`result before to json ${result}`);
+            return result.json();
+        })
+        .then(res => {
+            console.log(res);
+            var dogs = res.message;
+            fillDogsArray(dogs);
+        })
+        .catch (err => {
+            console.log(err);
+        })
 
-    $.getJSON(url, function(data) {
-            
-        var dogs = data.message;
-        //console.log("jowjow    " + dogs);
-        
-        fillDogsArray(dogs)
-        
-    });
 }
 
 
 fillDogsArray = (dogs) => {
-    console.log("hey hey hey  ");
    
     for (var i = 0; i < dogs.length; i++) {
-        // console.log(i);
-        // dogs.push(dogs[i]);
 
         findBreed(dogs[i]);
 
-        //nieuwe html elementen maken 
+        //Per hond nieuw html elementen maken 
         const div1 = document.createElement("div");
         const div2 = document.createElement("div");
         const span = document.createElement("span");
         const img = document.createElement("img"); 
 
-        //juiste classes etc toekennen
+        //juiste classes etc toekennen aan elementen
         div1.classList.add("card");
         div2.classList.add("card-image");
         span.classList.add("card-title");
@@ -95,35 +89,10 @@ fillDogsArray = (dogs) => {
         div2.appendChild(span); 
     }
     
-    //console.log(dogs);
-    
 }
 
 findBreed = (dog) => {
-    var splitted = dog.split("/");
+    var splittedUrl = dog.split("/");
     //console.log(splitted);
-    return breed = splitted[4];
+    return breed = splittedUrl[4];
 }
-
-
-
-
-/*
-
-
-
-
-async function getDogs() {
-    let url = 'https://dog.ceo/api/breeds/image/random/3';
-    try {
-        res = await fetch(url);
-        console.log("try in fetch");
-        return await res.json();
-    } catch (error) {
-        console.log(error);
-        console.log("try in fetch");
-    }
-}
-*/
-
-//   https://dog.ceo/api/breeds/image/random/3
