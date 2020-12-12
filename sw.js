@@ -2,7 +2,8 @@ const filesToCache = [
     'index.html',
     'js/dogs.js',
     'css/dogs.css',
-    '404.html'
+    '404.html',
+    'offline.html'
     // 'materialize.min.css'
 ];
 
@@ -46,6 +47,26 @@ self.addEventListener('fetch', event => {
         })
         .catch(err => {
             console.log(err);
+            return caches.match('offline.html');
+        })
+    )
+})
+
+self.addEventListener('activate', event => {
+    console.log('activating a new serviceworker');
+
+    const cacheWhiteList = [staticCacheName];
+
+    event.waitUntil(
+        caches.keys()
+        .then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if (cacheWhiteList.indexOf(cacheName) === -1) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            )
         })
     )
 })
