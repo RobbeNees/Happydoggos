@@ -9,5 +9,21 @@
       "src": "Favicon-dog.png",
       "sizes": "64x64",
       "type": "image/png"
+    },{
+        "src": "dog32.png",
+        "sizes": "32x32",
+        "type": "image/png"
+    },{
+        "src": "dog128.png",
+        "sizes": "128x128",
+        "type": "image/png"
+    },{
+        "src": "dog256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+    },{
+        "src": "dog512.png",
+        "sizes": "512x512",
+        "type": "image/png"
     }]
 }
