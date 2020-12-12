@@ -3,7 +3,8 @@
     "short_name": "HappyDoggos",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "c9c9c9",
+    "background_color": "#EE6E73",
+    "thene_color": "#EE6E73",
     "description": "A Simple webapp that generates random dogs",
     "icons": [{
       "src": "Favicon-dog.png",
