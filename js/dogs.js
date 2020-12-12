@@ -4,7 +4,7 @@ if ( 'serviceWorker' in navigator ) {
         console.log("serviceWorker Found");
 
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -12,10 +12,10 @@ if ( 'serviceWorker' in navigator ) {
 
 
 
-var dogs = [];
-var nmbrOfDogs;
-var breed;
-var gridContainer = document.getElementById("hiero");
+let dogs = [];
+let nmbrOfDogs;
+let breed;
+let gridContainer = document.getElementById("hiero");
 
 
 
@@ -23,7 +23,7 @@ document.getElementById("dogForm").addEventListener("submit", function(event){
 
     event.preventDefault();
 
-    var existingCards = document.querySelectorAll("div.card");
+    let existingCards = document.querySelectorAll("div.card");
     //Delete existing cards
     existingCards.forEach(card => {
         card.remove();
@@ -38,7 +38,7 @@ checkHowManyDogs = () => {
   console.log("checking how many dogs");
   nmbrOfDogs = document.getElementById('nmbrOfDogs').value;
   //console.log(nmbrOfDogs);
-  fetchDogs();
+    fetchDogs();
 }
 
 

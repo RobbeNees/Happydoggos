@@ -1,16 +1,21 @@
-const CACHE_NAME = "V1";
+const filesToCache = [
+    'index.html',
+    'js/dogs.js',
+    'css/dogs.css',
+    // 'materialize.min.css'
+];
 
-this.addEventListener('install', function(event){
+const staticCacheName = 'our-first-cache';
+
+self.addEventListener('install', event => {
+    console.log("attempting to install service worker and cache static content");
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(function(cache) {
-                console.log("opened cache");
-                return cache.addAll([
-                    'index.html',
-                    'dogs.js',
-                    'dogs.css',
-                    'materialize.min.css'
-                ])
+        caches.open(staticCacheName)
+            .then(cache => {
+                return cache.addAll(filesToCache);
+            })
+            .catch (err => {
+                console.error(err);
             })
     )
 })
